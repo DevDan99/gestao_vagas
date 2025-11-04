@@ -34,7 +34,6 @@ public class SecurityFilter extends OncePerRequestFilter {
 	// Se a requeisição não for autorizada, você pode lançar uma exceção ou configurar a resposta HTTP adequadamente.
 	protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-		SecurityContextHolder.getContext().setAuthentication(null); // Limpa o contexto de segurança para cada requisição
 		String header = request.getHeader("Authorization"); // Pega o token do cabeçalho Authorization
 
 		if (request.getRequestURI().startsWith("/company")) {

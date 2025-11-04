@@ -57,7 +57,7 @@ public class AuthCandidateUseCase {
 		var token = JWT.create()
 				.withIssuer("javagas") // Emissor do token
 				.withSubject(candidate.getId().toString()) // Assunto do token (ID do candidato)
-				.withClaim("roles", Arrays.asList("candidate")) // Reivindicações personalizadas (roles do candidato)
+				.withClaim("roles", Arrays.asList("CANDIDATE")) // Reivindicações personalizadas (roles do candidato)
 				.withExpiresAt(expiresIn) // Data de expiração do token (10 minutos a partir de agora)
 				.sign(algorithm);// Assina o token com o algoritmo especificado
 
