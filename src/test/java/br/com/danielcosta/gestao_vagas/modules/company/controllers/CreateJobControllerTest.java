@@ -1,7 +1,5 @@
 package br.com.danielcosta.gestao_vagas.modules.company.controllers;
 
-import java.util.UUID;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
