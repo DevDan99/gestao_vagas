@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.danielcosta</groupId>
 	<artifactId>gestao_vagas</artifactId>
-	<version>0.11.0-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<name>gestao_vagas</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
