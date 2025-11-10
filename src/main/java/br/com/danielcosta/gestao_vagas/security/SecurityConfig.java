@@ -3,6 +3,7 @@ package br.com.danielcosta.gestao_vagas.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +20,12 @@ public class SecurityConfig {
 	@Autowired
 	private SecurityCandidateFilter securityCandidateFilter;
 
+	private static final String[] SWAGGER_LIST = {
+			"/swagger-ui/**",
+			"/v3/api-docs/**",
+			"/swagger-resources/**"
+	};
+
 	// A anotação @Bean indica que o método retorna um bean gerenciado pelo Spring, que neste caso é a cadeia de filtros de
 	// segurança.
 	// Na pratica ele sobreescreve a configuração padrão de segurança do Spring Boot.
@@ -29,10 +36,12 @@ public class SecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()) // Desabilita a proteção CSRF
 				.authorizeHttpRequests(auth -> {
-					auth.requestMatchers("/candidate/").permitAll() // Permite acesso sem autenticação ao endpoint /candidate/
-							.requestMatchers("/company/").permitAll() // Permite acesso sem autenticação ao endpoint /company/
+					auth
+							.requestMatchers("/candidate/auth").permitAll()
+							.requestMatchers(HttpMethod.POST, "/candidate/").permitAll() // Permite acesso sem autenticação ao endpoint /candidate/
 							.requestMatchers("/company/auth").permitAll()
-							.requestMatchers("/candidate/auth").permitAll();
+							.requestMatchers("/company/").permitAll() // Permite acesso sem autenticação ao endpoint /company/
+							.requestMatchers(SWAGGER_LIST).permitAll();
 					auth.anyRequest().authenticated(); // Exige autenticação para qualquer outra requisição
 				})
 
