@@ -13,12 +13,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 // Classe de entidade que representa uma empresa no sistema de gestão de vagas.
 
 @Data
 @Entity(name = "company") // Anotação JPA para mapear esta classe para a tabela "company" no banco de dados.
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CompanyEntity {
 
 	@Id // Anotação JPA para indicar que este campo é a chave primária da tabela.
